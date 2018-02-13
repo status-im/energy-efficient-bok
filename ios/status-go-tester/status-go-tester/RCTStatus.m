@@ -115,6 +115,7 @@ static bool isStatusInitialized;
 //////////////////////////////////////////////////////////////////// startNode
 -(void)startNode
 {
+    signal(SIGPIPE, SIG_IGN);
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error = nil;
     NSURL *rootUrl =[[fileManager
