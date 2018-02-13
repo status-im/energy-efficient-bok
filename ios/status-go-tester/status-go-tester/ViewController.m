@@ -3,10 +3,9 @@
 #import "RCTStatus.h"
 
 static NSString *const kAccountIdKey = @"ACCOUNT_ID";
+static NSString *const kChatroomName = @"humans-need-not-apply";
+static NSString *const kUsername = @"Xcodified Tiny Rabbit";
 
-@interface ViewController ()
-
-@end
 
 @implementation ViewController {
     Status *_status;
@@ -60,8 +59,8 @@ static NSString *const kAccountIdKey = @"ACCOUNT_ID";
 {
     NSString *messageID = [[NSUUID UUID] UUIDString];
     NSString *timestamp = [NSString stringWithFormat:@"%ld", (long)[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]].integerValue];
-    NSString *fullMessage = [NSString stringWithFormat:@"{:message-id \"%@\", :group-id \"humans-need-not-apply\", :content \"%@\", :username \"Robotic Superfast Jellyfish\", :type :public-group-message, :show? true, :clock-value 1, :requires-ack? false, :content-type \"text/plain\", :timestamp %@}",
-                             messageID, message, timestamp];
+    NSString *fullMessage = [NSString stringWithFormat:@"{:message-id \"%@\", :group-id \"%@\", :content \"%@\", :username \"%@\", :type :public-group-message, :show? true, :clock-value 1, :requires-ack? false, :content-type \"text/plain\", :timestamp %@}",
+                             messageID, kChatroomName, message, kUsername, timestamp];
 
     NSString *hexString = [[fullMessage dataUsingEncoding:NSUTF8StringEncoding] description];
     hexString = [hexString stringByReplacingOccurrencesOfString:@"[ <>]"
@@ -97,17 +96,16 @@ static NSString *const kAccountIdKey = @"ACCOUNT_ID";
                   [[Status sharedInstance] login:[self storedAccountID]
                                         password:@"my-awesome-test-password"]);
 
-            NSLog(@"Joining #status...");
-            //NSDictionary *result = [self callWeb3AndParseResult:@"{\"jsonrpc\":\"2.0\",\"id\":2950,\"method\":\"shh_generateSymKeyFromPassword\",\"params\":[\"status\"]}"];
+            NSLog(@"Joining #%@...", kChatroomName);
 
-            NSDictionary *result = [self callWeb3AndParseResult:@"{\"jsonrpc\":\"2.0\",\"id\":2950,\"method\":\"shh_generateSymKeyFromPassword\",\"params\":[\"humans-need-not-apply\"]}"];
+            NSDictionary *result = [self callWeb3AndParseResult:
+                                    [NSString stringWithFormat:@"{\"jsonrpc\":\"2.0\",\"id\":2950,\"method\":\"shh_generateSymKeyFromPassword\",\"params\":[\"%@\"]}", kChatroomName]];
 
 
             NSString *key = result[@"result"];
-
             NSString *cmd = [NSString stringWithFormat:@"{\"jsonrpc\":\"2.0\",\"id\":2,\"method\":\"shh_newMessageFilter\",\"params\":[{\"allowP2P\":true,\"topics\":[\"0xaabb11ee\"],\"type\":\"sym\",\"symKeyID\":\"%@\"}]}", key];
 
-            NSLog(@"Listening to #status...");
+            NSLog(@"Listening to #%@...", kChatroomName);
             result = [self callWeb3AndParseResult:cmd];
             NSString *filterID = result[@"result"];
 
@@ -125,7 +123,7 @@ static NSString *const kAccountIdKey = @"ACCOUNT_ID";
                     if ([result[@"result"] count] > 0) {
                         for (NSDictionary *msg in result[@"result"]) {
                             NSString *decodedMsg = [self decodedMessageContent:msg[@"payload"]];
-                            NSLog(@"Reading #status: %@", decodedMsg);
+                            NSLog(@"Reading #%@: %@", kChatroomName, decodedMsg);
                             _currentMessageLabel.text = [NSString stringWithFormat:@"%@ -> %@", [NSDate date], decodedMsg];
                         }
                     }
@@ -151,15 +149,6 @@ static NSString *const kAccountIdKey = @"ACCOUNT_ID";
     };
 
     [[Status sharedInstance] startNode];
-
-    // Do any additional setup after loading the view, typically from a nib.
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 @end
