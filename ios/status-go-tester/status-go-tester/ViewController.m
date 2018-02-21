@@ -11,6 +11,7 @@ static NSString *const kUsername = @"Xcodified Tiny Rabbit";
     Status *_status;
     dispatch_source_t _timer;
     UILabel *_currentMessageLabel;
+    NSDate *_didEnterForegroundTime;
 }
 
 - (NSString *)storedAccountID
@@ -75,6 +76,11 @@ static NSString *const kUsername = @"Xcodified Tiny Rabbit";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillEnterForeground:)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+
     _currentMessageLabel = [UILabel new];
     _currentMessageLabel.numberOfLines = 0;
     _currentMessageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -121,6 +127,17 @@ static NSString *const kUsername = @"Xcodified Tiny Rabbit";
                 dispatch_source_set_event_handler(_timer, ^{
                     NSDictionary *result = [self callWeb3AndParseResult:cmd];
                     if ([result[@"result"] count] > 0) {
+                        if (_didEnterForegroundTime) {
+                            NSString *message = [NSString stringWithFormat:@"Time to get a new message after BG: %f seconds", [[NSDate date] timeIntervalSinceDate:_didEnterForegroundTime]];
+                            _didEnterForegroundTime = nil;
+                            UIAlertController * alert = [UIAlertController
+                                                         alertControllerWithTitle:@"Time"
+                                                         message:message
+                                                         preferredStyle:UIAlertControllerStyleAlert];
+                            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+                            [alert addAction:ok];
+                            [self presentViewController:alert animated:YES completion:nil];
+                        }
                         for (NSDictionary *msg in result[@"result"]) {
                             NSString *decodedMsg = [self decodedMessageContent:msg[@"payload"]];
                             NSLog(@"Reading #%@: %@", kChatroomName, decodedMsg);
@@ -149,6 +166,11 @@ static NSString *const kUsername = @"Xcodified Tiny Rabbit";
     };
 
     [[Status sharedInstance] startNode];
+}
+
+- (void)applicationWillEnterForeground:(NSNotification *)notification
+{
+    _didEnterForegroundTime = [NSDate date];
 }
 
 @end
