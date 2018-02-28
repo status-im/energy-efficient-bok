@@ -48,10 +48,10 @@ for platform in "$@"; do
         # Instead we are going to manually overwrite it.
 
         # For Xcode to pick up the new version, remove the whole framework first:
-        rm -r $STATUS_REACT_HOME/modules/react-native-status/ios/RCTStatus/Statusgo.framework/ || true
+        rm -r $STATUS_REACT_HOME/ios/status-go-tester/Statusgo.framework/ || true
 
         # Then copy over framework:
-        cp -R $STATUS_GO_HOME/build/bin/statusgo-ios-9.3-framework/Statusgo.framework $STATUS_REACT_HOME/modules/react-native-status/ios/RCTStatus/Statusgo.framework
+        cp -R $STATUS_GO_HOME/build/bin/statusgo-ios-9.3-framework/Statusgo.framework $STATUS_REACT_HOME/ios/status-go-tester/Statusgo.framework
 
         # In Xcode, clean and build. If you have any scripts to do this, make sure that
         # you don't accidentally run the mvn step to undo your manual install.
