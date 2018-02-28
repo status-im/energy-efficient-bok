@@ -160,8 +160,6 @@ static NSString *const kUsername = @"Xcodified Tiny Rabbit";
                 });
                 dispatch_resume(_timer);
             }
-
-
         }
     };
 

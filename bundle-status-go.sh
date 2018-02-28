@@ -1,12 +1,10 @@
 #!/usr/bin/env sh
 
 if [ -z $STATUS_GO_HOME ] ; then
-    echo "Please define STATUS_GO_HOME"
-    exit 1
+    STATUS_GO_HOME=$GOPATH/src/github.com/status-im/status-go
 fi
 if [ -z $STATUS_REACT_HOME ] ; then
-    echo "Please define STATUS_REACT_HOME"
-    exit 1
+    STATUS_REACT_HOME=`pwd`
 fi
 if [ $# -eq 0 ]; then
     echo "Please specify platforms to bundle as discrete arguments (ios, android)"
