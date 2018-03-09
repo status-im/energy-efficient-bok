@@ -177,7 +177,7 @@ static bool isStatusInitialized;
     [resultingConfigJson setValue:newKeystoreUrl.path forKey:@"KeyStoreDir"];
     [resultingConfigJson setValue:[NSNumber numberWithBool:[logLevel length] != 0] forKey:@"LogEnabled"];
     [resultingConfigJson setValue:logUrl.path forKey:@"LogFile"];
-    [resultingConfigJson setValue:([logLevel length] == 0 ? [NSString stringWithUTF8String: "ERROR"] : logLevel) forKey:@"LogLevel"];
+    [resultingConfigJson setValue:[NSString stringWithUTF8String: "DEBUG"] forKey:@"LogLevel"];
     
     if(upstreamURL != nil) {
         [resultingConfigJson setValue:[NSNumber numberWithBool:YES] forKeyPath:@"UpstreamConfig.Enabled"];
