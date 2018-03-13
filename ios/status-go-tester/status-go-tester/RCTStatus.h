@@ -16,6 +16,7 @@ typedef void(^OnSignalEvent)(NSString *);
 -(NSString *)createAccount:(NSString *)password;
 -(NSString *)login:(NSString *)address password:(NSString *)password;
 -(NSString *)sendWeb3Request:(NSString *)payload;
+- (NSString *)readFromUnixSocket:(NSString *)address;
 
 + (instancetype)sharedInstance;
 

@@ -316,6 +316,15 @@ static bool isStatusInitialized;
     }
 }
 
+
+-(NSString *) readFromUnixSocket:(NSString *)address
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        ReadFromUnixSocket((char *) [address UTF8String]);
+    });
+    return @"";
+}
+
 -(NSString *) sendWeb3Request:(NSString *)payload
 {
     char * result = CallRPC((char *) [payload UTF8String]);

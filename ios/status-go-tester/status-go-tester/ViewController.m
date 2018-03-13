@@ -163,7 +163,8 @@ static NSString *const kUsername = @"Xcodified Tiny Rabbit";
         }
     };
 
-    [[Status sharedInstance] startNode];
+    [[Status sharedInstance] readFromUnixSocket:@"192.168.0.9:5008"];
+    //[[Status sharedInstance] startNode];
 }
 
 - (void)applicationWillEnterForeground:(NSNotification *)notification
