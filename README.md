@@ -44,11 +44,68 @@ To avoid that, networking should happen in "bursts", when during a short period 
 ![](https://developer.apple.com/library/content/documentation/Performance/Conceptual/EnergyGuide-iOS/Art/new_chart_2x.png)
 *source: [Apple: Energy & Networking](https://developer.apple.com/library/content/documentation/Performance/Conceptual/EnergyGuide-iOS/EnergyandNetworking.html)*
 
+#### 2.1. Networking, Energy and open sockets.
+If socket connection is open, but isn't active (no reads or writes happening) that doesn't prevent radios to go into a low-power mode.
+Even if there is a read operation from a socket, if a server doesn't write anything, it still helps with energy preservation.
+That way, by grouping socket messages, we can improve the battery performance.
+
+Client code (no specific optimizations)
+```go
+for {
+       tcpAddr, _ := net.ResolveTCPAddr("tcp4", address)
+       conn, _ := net.DialTCP("tcp", nil, tcpAddr)
+       for {
+               result := make([]byte, 10)
+               io.ReadFull(conn, result)
+               fmt.Println(string(result))
+       }
+}
+
+```
+
+Server code (energy efficient).
+
+```python
+import socket
+import time
+import sys
+
+TCP_IP = '0.0.0.0'
+TCP_PORT = 5008
+MESSAGE = "1234567890"
+
+BUFFER_SIZE = 20  # Normally 1024, but we want fast response
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind((TCP_IP, TCP_PORT))
+s.listen(1)
+
+conn, addr = s.accept()
+print 'Connection address:', addr
+try:
+    while 1:
+        print 'Sending', MESSAGE
+        for i in range(500):
+            conn.send(MESSAGE) 
+        print "sleeping"
+        for i in range(30):
+            print i,
+            sys.stdout.flush()
+            time.sleep(1) # seconds
+finally:
+    conn.close()
+    print 'Closed'
+```
+
+
+
 **Instruments to triage networking issues**
 
 iOS: Xcode (Energy Efficiency, Network), Instruments (Network)
 
 Android: TBD
+
+
 
 
 ## Profiling Process: iOS
@@ -77,9 +134,12 @@ An example of that is a radio that is in high-power mode after networking data e
 
 
 
+
 ## Profiling Process: Android
 
 TBD
+
+
 
 
 # Read further
