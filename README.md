@@ -49,6 +49,8 @@ If socket connection is open, but isn't active (no reads or writes happening) th
 Even if there is a read operation from a socket, if a server doesn't write anything, it still helps with energy preservation.
 That way, by grouping socket messages, we can improve the battery performance.
 
+*The way how energy efficient networking can be controlled by a server*
+
 Client code (no specific optimizations)
 ```go
 for {
@@ -96,6 +98,14 @@ finally:
     conn.close()
     print 'Closed'
 ```
+
+#### 2.2 The Tradeoff
+
+There is a tradeoff between having energy efficient networking and real-time communications. The time that is needed for the radio to go to the low-power mode is quite substantal (>= 10 seconds). That can easily be seen in "overhead" graph in Xcode.
+That rate means that any app that requires real-time communication (a messsenger) will not be energy efficient in foreground.
+
+What is possible to do, is to reduce energy consumption is background. There, we can sync data more rarely, or only by a signal of a silent push notification.
+
 
 
 
