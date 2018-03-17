@@ -4,7 +4,7 @@
 ### Manual energy consumption test report
 
 ### To do
-- [ ] Add result to Test Results table
+- [ ] Add result to [Manual Test Results](QA_test_results.md) table
 - [ ] Commit Android *bugreport* or iOS logs file
 
 #### Test session name
