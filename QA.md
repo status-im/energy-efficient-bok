@@ -16,7 +16,7 @@ Having the 2 rules in mind, it's important to design the tests / experiment in s
 ### Before you start
 As mentioned in the introduction, it's very important to measure only stats related to Status app. That's why, please clear device logs before each test session and dump them right afterwards.
 
-E.g. for Android use `adb shell dumpsys batterystats --reset` to reset the battery logs and when last test step is done run `adb bugreport` to save the results. See more in the how to use the tools guide.
+E.g. for Android use `adb shell dumpsys batterystats --reset` to reset the battery logs. Then unplug the device from power. When last test step is done run `adb bugreport` to save the results. See more in the how to use the tools guide.
 
 ### 1. Release testing session (30 min)
 
@@ -24,23 +24,28 @@ E.g. for Android use `adb shell dumpsys batterystats --reset` to reset the batte
 
 - 1 device under test
 - Another device to communicate with the 1st device
-- QR code of a special contact used in group chat test step:
-<img src="https://user-images.githubusercontent.com/7532782/37519339-04a31648-2919-11e8-95f1-e66e236c8c7f.png" width="200">
+- QR code of the special contact used in group chat test step:
+<img src="https://user-images.githubusercontent.com/7532782/37519339-04a31648-2919-11e8-95f1-e66e23 6c8c7f.png" width="200">
+- App is installed on both devices ready to be opened for the first time
+- Device screen is on and the app is always in the foreground unless test steps says differently
+- Use [timer](http://www.online-timers.com/timer-30-minutes) while performing the test steps. Try to spend exact amount of given time doing each of the steps
+
 
 #### Test steps
 
 | No | Step | Time in minutes | Details |
 |---|-----|----|---|
 |1|Open the app|0|Open the app for the first time after installation|
-|2|Create new account|1|Share usage data|
-|3|Create 1-1 chat|1|Scan QR code of another device|
-|4|Exchange 100 messages|5|Send 50 messages and receive another 50|
-|4|Start a new 1-1 chat and exchange 50 messages|3|Send 25 messages and receive another 25|
-|5|Go to background and receive 20 notifications|5|Receive 20 messages for the latest chat while staying in the background|
-|5|Open chat from the latest notification and request ETH|2|Send ETH from another device and wait until ETH is received|
-|6|Send ETH|2|Wait until ETH is received on another device|  
-|7|Join public chat|1|Join public chat like #status-performance on both devices|
-|8|Exchange 100 messages|5|Send 50 messages and receive another 50|
-|9|Add new contact by scanning QR code|1|Scan QR code of the special contact. See Prerequisites section|
-|9|Create group chat|1|Create a group chat with 2nd device and the special contact|
-|10|Exchange 50 messages in group chat|3|Send 50 messages and then receive another 50 sending them from the 2nd device|
+|2|Create new account on both devices|2|Allow to share usage data|
+|3|Use faucet to request ETH|1|Request ETH on both devices. It will be used in the next steps|
+|4|Create 1-1 chat|1|Open app on the 2nd device and scan its contact QR code. Click "Add contact" on 2nd device|
+|5|Exchange 50 messages|5|Send 25 messages and receive another 25|
+|6|Put app into background, turn off device screen and receive 20 notifications|3|Go to background, turn off the device screen and receive 20 messages in the last chat|
+|7|Open chat from the latest notification and request ETH|2|Request small amount of ETH like 0.00001. Send ETH from another device and wait until ETH is received|
+|8|Send ETH from Wallet|2|Go to Wallet and send 0.0001 ETH to 2nd device. Then wait until ETH is received on the 2nd device|  
+|9|Join public chat|1|Join public chat like #status-performance on both devices|
+|10|Exchange 50 messages|5|Send 25 messages and receive another 25|
+|11|Add new contact by scanning QR code|0.5|Scan QR code of the special contact (see Prerequisites section)|
+|12|Create group chat|0.5|Create a group chat with 2nd device and the special contact that was just added|
+|13|Exchange 50 messages in group chat|5|Send 50 messages and then receive another 50 sending them from the 2nd device|
+|14|Put app into background and do nothing|2||
