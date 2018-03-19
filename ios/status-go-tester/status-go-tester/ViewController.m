@@ -87,6 +87,8 @@ static NSString *const kUsername = @"Xcodified Tiny Rabbit";
     _currentMessageLabel.frame = self.view.bounds;
     [self.view addSubview:_currentMessageLabel];
 
+    [self createModeButtons];
+
     [Status sharedInstance].onSignalEvent = ^(NSString *sig) {
         if ([sig hasPrefix:@"{\"type\":\"node.ready\""]) {
             NSLog(@"NODE READY!");
@@ -169,6 +171,43 @@ static NSString *const kUsername = @"Xcodified Tiny Rabbit";
 - (void)applicationWillEnterForeground:(NSNotification *)notification
 {
     _didEnterForegroundTime = [NSDate date];
+}
+
+- (void)createModeButtons {
+    UIStackView *stackView = [UIStackView new];
+    stackView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:stackView];
+    [stackView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:50].active = YES;
+    [stackView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    [stackView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+    stackView.distribution = UIStackViewDistributionFillEqually;
+
+    for (NSArray *data in @[@[@"foreground", @"didTapForegroundModeButton"],
+                            @[@"background", @"didTapBackgroundModeButton"]]) {
+        NSString *title = data[0];
+        NSString *selector = data[1];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        [button setTitle:title forState:UIControlStateNormal];
+        [button addTarget:self
+                   action:NSSelectorFromString(selector)
+         forControlEvents:UIControlEventTouchUpInside];
+
+        [button setContentCompressionResistancePriority:UILayoutPriorityRequired
+                                                forAxis:UILayoutConstraintAxisVertical];
+        [button setContentCompressionResistancePriority:UILayoutPriorityRequired
+                                                forAxis:UILayoutConstraintAxisHorizontal];
+        [stackView addArrangedSubview:button];
+    }
+}
+
+- (void)didTapForegroundModeButton
+{
+    [Status.sharedInstance appStateChanged:@"active"];
+}
+
+- (void)didTapBackgroundModeButton
+{
+    [Status.sharedInstance appStateChanged:@"background"];
 }
 
 @end

@@ -316,6 +316,11 @@ static bool isStatusInitialized;
     }
 }
 
+-(void) appStateChanged:(NSString *)state
+{
+    AppStateChange((char *) [state UTF8String]);
+}
+
 -(NSString *) sendWeb3Request:(NSString *)payload
 {
     char * result = CallRPC((char *) [payload UTF8String]);
