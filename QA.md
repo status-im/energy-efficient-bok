@@ -25,7 +25,8 @@ E.g. for Android use `adb shell dumpsys batterystats --reset` to reset the batte
 - 1 device under test
 - Another device to communicate with the 1st device
 - QR code of the special contact used in group chat test step:
-<img src="https://user-images.githubusercontent.com/7532782/37519339-04a31648-2919-11e8-95f1-e66e23 6c8c7f.png" width="200">
+<img src="https://user-images.githubusercontent.com/7532782/37644817-3d953cce-2c25-11e8-91c9-a90da0e47c09.png" width="200">
+
 - App is installed on both devices ready to be opened for the first time
 - Device screen is on and the app is always in the foreground unless test steps says differently
 - Use [timer](http://www.online-timers.com/timer-30-minutes) while performing the test steps. Try to spend exact amount of given time doing each of the steps
