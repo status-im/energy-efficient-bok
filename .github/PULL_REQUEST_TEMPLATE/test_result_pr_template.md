@@ -1,4 +1,4 @@
-[comment]: # (Please change "report/build-name" to your branch name with the test report)
+[comment]: # (Please change "report/example" to your branch name with the test report you want to merge)
 
 
 ### Manual energy consumption test report
@@ -20,9 +20,12 @@
 
 [comment]: # (#c3449a3)
 * Build commit:
+
 [comment]: # (Like Android 7.0, iOS 11.2.1 or both of them)
 * OS version:
+
 [comment]: # (Device used for testing, like Samsung Galaxy S8)
 * Device used for testing:
+
 [comment]: # (Link to TestFairy session, like: https://status-im.testfairy.com/projects/4803590-status/builds/7881427/sessions/57)
 * TestFairy session:
