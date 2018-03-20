@@ -3,6 +3,8 @@
 * [Energy Efficiency Dev Guide](./ENERGY_GUIDE_DEV.md)
 
 * Testing
-    * [Manual Energy Consumptions Test Results](./QA_test_results.md)
-    * [Testing Energy Consumption on iOS](./QA_iOS.md)
-    * [Testing Energy Consumption on Android](./QA_Android.md)
+    * [Manual energy consumption test results](./QA_test_results.md)
+    * [Types of manual tests to perform](./QA.md)
+    * Tools for testing energy consumption
+        * [iOS tools](./QA_iOS.md)
+        * [Android tools](./QA_Android.md)
