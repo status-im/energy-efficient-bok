@@ -1,7 +1,7 @@
 # Energy consumption test results
 
 ## Add new
-- [Click to add](https://github.com/mandrigin/status-go-n-wrapper/compare/master...report/example?quick_pull=1&template=test_result_pr_template.md&title=Energy%20consumption%20test%20result%20for%20build:%20{build%20name},%20os:%20{Android,%20iOS}) new manual test result
+- [Click to add](https://github.com/mandrigin/status-go-n-wrapper/compare/master...report/example?quick_pull=1&template=test_result_pr_template.md&title=Energy%20consumption%20test%20result%20for%20build:%20{build%20name},%20os:%20{Android,%20iOS}) new result of a [manual energy consumption test](./QA.md)
 
 ## Manual test results
 
