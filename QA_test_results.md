@@ -7,6 +7,7 @@
 
 |Date|Build|Platform|Test session|Device|Conditions|Battery (total)*|Battery (CPU)*|Total data transferred*|Logs|PR|
 |---|---|---|---|---|---|--|--|--|--|--|
+|2018-03-22|581d4f (2018-03-22 nightly)|Android|Release testing (30 min)|Samsung Galaxy S8|wifi only, 50% screen brightness|1.32%|2.21%|79.95MB|bugreport-2018-03-22-14-30-42.zip|#3|
 |2018-03-17|9533d1 (2018-03-17 nightly)|Android|Release testing (30 min)|Samsung Galaxy S8|wifi only, 50% screen brightness|0.97%|1.53%|43.42MB|bugreport-2018-03-17-11-32-14.zip||
 
 ----
