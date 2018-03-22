@@ -29,24 +29,24 @@ E.g. for Android use `adb shell dumpsys batterystats --reset` to reset the batte
 
 - App is installed on both devices ready to be opened for the first time
 - Device screen is on and the app is always in the foreground unless test steps says differently
-- Use [timer](http://www.online-timers.com/timer-30-minutes) while performing the test steps. Try to spend exact amount of given time doing each of the steps
+- Use [timer](http://www.online-timers.com/timer-30-minutes) while performing the test steps. Try to stick to a duration of each step. When you finished before time, keep the app in the foreground
 
 
 #### Test steps
 
-| No | Step | Time in minutes | Details |
-|---|-----|----|---|
-|1|Open the app|0|Open the app for the first time after installation|
-|2|Create new account on both devices|2|Allow to share usage data|
-|3|Use faucet to request ETH|1|Request ETH on both devices. It will be used in the next steps|
-|4|Create 1-1 chat|1|Open app on the 2nd device and scan its contact QR code. Click "Add contact" on 2nd device|
-|5|Exchange 50 messages|5|Send 25 messages and receive another 25|
-|6|Put app into background, turn off device screen and receive 20 notifications|3|Go to background, turn off the device screen and receive 20 messages in the last chat|
-|7|Open chat from the latest notification and request ETH|2|Request small amount of ETH like 0.00001. Send ETH from another device and wait until ETH is received|
-|8|Send ETH from Wallet|2|Go to Wallet and send 0.0001 ETH to 2nd device. Then wait until ETH is received on the 2nd device|  
-|9|Join public chat|1|Join public chat like #status-performance on both devices|
-|10|Exchange 50 messages|5|Send 25 messages and receive another 25|
-|11|Add new contact by scanning QR code|0.5|Scan QR code of the special contact (see Prerequisites section)|
-|12|Create group chat|0.5|Create a group chat with 2nd device and the special contact that was just added|
-|13|Exchange 50 messages in group chat|5|Send 50 messages and then receive another 50 sending them from the 2nd device|
-|14|Put app into background and do nothing|2||
+|No|Step|Duration in minutes|Time left in minutes|Details|
+|---|-----|----|---|---|
+|1|Open the app|0|30|Open the app for the first time after installation|
+|2|Create new account on both devices|2|28|Allow to share usage data|
+|3|Use faucet to request ETH|1|27|Request ETH on both devices. It will be used in the next steps|
+|4|Create 1-1 chat|1|26|Open app on the 2nd device and scan its contact QR code. Click "Add contact" on 2nd device|
+|5|Exchange 50 messages|5|21|Send 25 messages and receive another 25|
+|6|Put app into background, turn off device screen and receive 20 notifications|3|18|Go to background, turn off the device screen and receive 20 messages in the last chat|
+|7|Open chat from the latest notification and request ETH|2|16|Request small amount of ETH like 0.00001. Send ETH from another device and wait until ETH is received|
+|8|Send ETH from Wallet|2|14|Go to Wallet and send 0.0001 ETH to 2nd device. Then wait until ETH is received on the 2nd device|  
+|9|Join public chat|1|13|Join public chat like #status-performance on both devices|
+|10|Exchange 50 messages|5|8|Send 25 messages and receive another 25|
+|11|Add new contact by scanning QR code|0.5|7.5|Scan QR code of the special contact (see Prerequisites section)|
+|12|Create group chat|0.5|7|Create a group chat with 2nd device and the special contact that was just added|
+|13|Exchange 50 messages in group chat|5|2|Send 25 messages and then receive another 25 sending them from the 2nd device|
+|14|Put app into background and do nothing|2|0||
