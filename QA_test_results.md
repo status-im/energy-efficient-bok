@@ -5,9 +5,13 @@
 
 ## Manual test results
 
-|Date|Build|Platform|Test session|Device|Conditions|Battery (total)*|Battery (CPU)*|Total data transferred*|Logs|PR|
-|---|---|---|---|---|---|--|--|--|--|--|
-|2018-03-17|9533d1 (2018-03-17 nightly)|Android|Release testing (30 min)|Samsung Galaxy S8|wifi only, 50% screen brightness|0.97%|1.53%|43.42MB|bugreport-2018-03-17-11-32-14.zip||
+|Date|Build|Platform|Test session|Device|Conditions|Battery (total)*|Battery (CPU)*|Total data transferred*|Logs|
+|---|---|---|---|---|---|--|--|--|--|
+|2018-04-11|77e6f4 (2018-04-11 nightly)|Android|[1-1 messaging in background](results/telegram-vs-status-1-1-background-messaging.md)|Samsung Galaxy S8|wifi only|0.03%|0.04%|0.83MB|bugreport-2018-04-11-15-18-12-status.zip|
+|2018-04-11|Telegram v4.8.5|Android|[1-1 messaging in background](results/telegram-vs-status-1-1-background-messaging.md)|Samsung Galaxy S8|wifi only|0.01%|0.00%|83KB|bugreport-2018-04-11-15-06-03-telegram.zip|
+|2018-04-11|77e6f4 (2018-04-11 nightly)|Android|[1-1 messaging in foreground](results/telegram-vs-status-1-1-foreground-messaging.md)|Samsung Galaxy S8|wifi only, 50% brightness|0.4%|0.67%|2.43MB|bugreport-2018-04-11-15-49-45-status.zip|
+|2018-04-11|Telegram v4.8.5|Android|[1-1 messaging in foreground](results/telegram-vs-status-1-1-foreground-messaging.md)|Samsung Galaxy S8|wifi only, 50% brightness|0.09%|0.04%|361.79KB|bugreport-2018-04-11-15-59-03-telegram.zip|
+|2018-03-17|9533d1 (2018-03-17 nightly)|Android|Release testing (30 min)|Samsung Galaxy S8|wifi only, 50% screen brightness|0.97%|1.53%|43.42MB|bugreport-2018-03-17-11-32-14.zip|
 
 ----
 **Battery (total)** - Device estimated power use
