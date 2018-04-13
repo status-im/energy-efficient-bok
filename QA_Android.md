@@ -24,7 +24,9 @@ http://localhost:9999/
 
 ### Measure battery consumption
 
-Now it's time to measure battery consumption while performing a test / experiment. To get an idea what kind of test you should perform, check [types of experiments](#types- of-experiments).
+Now it's time to measure battery consumption while performing a test / experiment. To get an idea what kind of test you should perform, check [types of experiments](./QA.md)
+
+
 
 1. First, make sure your device is recognized:
 ```
