@@ -27,6 +27,7 @@ E.g. for Android use `adb shell dumpsys batterystats --reset` to reset the batte
 - QR code of the special contact used in group chat test step:
 <img src="https://user-images.githubusercontent.com/7532782/37644817-3d953cce-2c25-11e8-91c9-a90da0e47c09.png" width="200">
 
+- ‼️ Make sure TestFairy is disabled during the test execution, it can significantly interfere with the test results.
 - App is installed on both devices ready to be opened for the first time
 - Device screen is on and the app is always in the foreground unless test steps says differently
 - Use [timer](http://www.online-timers.com/timer-30-minutes) while performing the test steps. Try to stick to a duration of each step. When you finished before time, keep the app in the foreground
