@@ -1,0 +1,28 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 27
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+
+
+    //implementation 'status-im:function:0.0.1'
+    String statusGoVersion = 'develop-ge6610f3b'
+    final String statusGoGroup = 'status-im', statusGoName = 'status-go'
+    // Check if the local status-go jar exists, and compile against that if it does
+    final String localStatusLibOutputDir = "${rootDir}/status-go-lib/libs", localVersion = 'local'
+
+    if (new File("${localStatusLibOutputDir}/${statusGoGroup}/${statusGoName}/${localVersion}/${statusGoName}-${localVersion}.aar").exists()) {
+        // Use the local version
+        statusGoVersion = localVersion
+    }
+    implementation(group: statusGoGroup, name: statusGoName, version: statusGoVersion, ext: 'aar')
+}

@@ -109,7 +109,11 @@ static NSString *const kUsername = @"Xcodified Tiny Rabbit";
 
 
             NSString *key = result[@"result"];
-            NSString *cmd = [NSString stringWithFormat:@"{\"jsonrpc\":\"2.0\",\"id\":2,\"method\":\"shh_newMessageFilter\",\"params\":[{\"allowP2P\":true,\"topics\":[\"0xaabb11ee\"],\"type\":\"sym\",\"symKeyID\":\"%@\"}]}", key];
+            NSString *cmd = [NSString stringWithFormat:@"{\"jsonrpc\":\"2.0\",\"id\":2,\"method\":\"shh_newMessageFilter\",\"params\":[{\"allowP2P\":true,\"topics\":[\"0xaabb11ee\"],\"type\":\"sym\",\"symKeyID\":\"%@\"}]
+                             
+                             }", key];
+
+            {"jsonrpc":"2.0","method":"shh_newMessageFilter","id":12,"params":{"topics":["0xaabb11ee"],"symKeyID":"adf0cabc3bcc2c73238c2f3f33daac977be660014b6a101b362e2fa3b8f9dc00","allowP2P":true,"type":"sym"}}
 
             NSLog(@"Listening to #%@...", kChatroomName);
             result = [self callWeb3AndParseResult:cmd];
