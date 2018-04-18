@@ -119,7 +119,9 @@ public class MainActivity extends AppCompatActivity {
         String key = (String) respIn.getResult();
 
         List<Object>fpl = new ArrayList<>();
-        fpl.add("0xaabb11ee");
+        fpl.add(getTopicFromChannelName(chatRoom));
+
+
         Map<String, Object> fp = new HashMap<>();
         fp.put("allowP2P", true);
         fp.put("topics", fpl);
@@ -192,6 +194,32 @@ public class MainActivity extends AppCompatActivity {
                         [self callWeb3AndParseResult:cmd];
                     }
                     */
+    }
+
+    private Object getTopicFromChannelName(String chatRoom) throws JSONRPC2ParseException {
+        byte[] bytes = chatRoom.getBytes(Charset.forName("UTF-8"));
+        StringBuilder byteStringBuilder = new StringBuilder();
+        for (byte b: bytes) {
+            byteStringBuilder.append(String.format("%02x", b));
+        }
+
+        String byteString = byteStringBuilder.toString();
+        byteString = "0x" + byteString;
+
+        List<Object> params = new ArrayList<>();
+        params.add(byteString);
+
+        JSONRPC2Request reqOut =
+                new JSONRPC2Request(
+                        "web3_sha3", params, 12);
+
+
+        String jsonString = statusModule.sendWeb3Request(reqOut.toJSONString());
+
+        JSONRPC2Response respIn = JSONRPC2Response.parse(jsonString);
+        String topicSha3 = (String) respIn.getResult();
+
+        return topicSha3.substring(0, 10);
     }
 
     private void updateLabel(String decryptedPayload) {
