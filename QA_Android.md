@@ -73,3 +73,4 @@ When you scroll down to **App Selection** and select Status (im.status.ethereum)
 ----
 
 Here is full description of how to analyse power usage with [Battery Historian](https://developer.android.com/topic/performance/power/battery-historian.html)
+
