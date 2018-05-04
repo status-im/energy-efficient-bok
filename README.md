@@ -7,3 +7,4 @@
     * Tools for testing energy consumption
         * [iOS tools](./QA_iOS.md)
         * [Android tools](./QA_Android.md)
+            * [Android Studio Profiler](./QA_Android_Profiler.md)
