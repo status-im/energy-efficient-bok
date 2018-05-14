@@ -59,7 +59,7 @@ Create a keystore in Android studio with the following parameters like in `andro
 
 `make prod-build-android` 
 
-`./android/gradlew assembleRelease`
+`pushd android && ./gradlew assembleRelease && popd`
 
 `adb install -r ./android/app/build/outputs/apk/release/app-release.apk`
 
