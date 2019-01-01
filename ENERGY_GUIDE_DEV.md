@@ -134,9 +134,7 @@ An example of that is a radio that is in high-power mode after networking data e
 
 ## Profiling Process: Android
 
-TBD
-
-
+Read more in the [Android Profiler Guide](./QA_Android_Profiler.md)
 
 
 # Read further
